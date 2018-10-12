@@ -357,7 +357,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.i(TAG,response);
-                        extractDataLogin(response);
+                        if(hf.login(LoginActivity.this,response)){
+                            Intent i = new Intent(LoginActivity.this,Dashboard.class);
+                            startActivity(i);
+                        }
 //                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
 //                        Intent i =new Intent(LoginActivity.this,Dashboard.class);
 //                        startActivity(i);
@@ -392,34 +395,7 @@ public class LoginActivity extends AppCompatActivity {
         mRequestQueue.add(stringRequest);
     }
 
-    public boolean extractDataLogin(String response) {
-        try {
-            JSONObject jso=new JSONObject(response);
-            JSONObject userJson= jso.getJSONObject("user");
-//             gender,String dob,int packageId,int classId,int studentId
-            JSONObject classInfo= userJson.getJSONObject("class");
-//            String name,String className, String stream, String programName
 
-            ClassInfo ci=new ClassInfo(classInfo.getString("name"),classInfo.getString("class"),classInfo.getString("stream"),classInfo.getString("program_name"));
-            Constants.user=new User(ci,userJson.getString("name"),userJson.getString("pic_path"),userJson.getString("phone"),userJson.getString("email"),
-                    userJson.getString("gender"),
-                    userJson.getString("date_of_birth"),
-                    userJson.getInt("package_id"),
-                    userJson.getInt("class_id"),
-                    userJson.getInt("id"));
-
-            hf.addPreference(this,Constants.KEY_USER_JSON,response);
-            Intent i = new Intent(this,Dashboard.class);
-            startActivity(i);
-            return true;
-
-        } catch (JSONException e) {
-            Toast.makeText(this,"JSON object problem"+e.getMessage(),Toast.LENGTH_LONG).show();
-            Log.i(TAG,"JSON object problem");
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     @Override
     protected void onStop() {

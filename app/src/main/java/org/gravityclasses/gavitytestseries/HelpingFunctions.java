@@ -11,6 +11,7 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,11 +67,17 @@ public class HelpingFunctions extends Application{
 
     public void checkLogin(Activity a)
     {
-        if(Constants.user==null)
+        String response=getPreference(a,Constants.KEY_USER_JSON);
+        if(response.equals("") && Constants.user==null)
         {
             Intent i=new Intent(a,LoginActivity.class);
             startActivity(i);
             a.finish();
+        }
+
+        if(!response.equals("") && Constants.user==null)
+        {
+            login(a,response);
         }
     }
 
@@ -78,6 +85,35 @@ public class HelpingFunctions extends Application{
     {
         Constants.user=null;
         return removePreference(a,"userJson");
+    }
+
+
+    public boolean login(Activity a,String response) {
+        try {
+            JSONObject jso=new JSONObject(response);
+            JSONObject userJson= jso.getJSONObject("user");
+//             gender,String dob,int packageId,int classId,int studentId
+            JSONObject classInfo= userJson.getJSONObject("class");
+//            String name,String className, String stream, String programName
+
+            ClassInfo ci=new ClassInfo(classInfo.getString("name"),classInfo.getString("class"),classInfo.getString("stream"),classInfo.getString("program_name"));
+            Constants.user=new User(ci,userJson.getString("name"),userJson.getString("pic_path"),userJson.getString("phone"),userJson.getString("email"),
+                    userJson.getString("gender"),
+                    userJson.getString("date_of_birth"),
+                    userJson.getInt("package_id"),
+                    userJson.getInt("class_id"),
+                    userJson.getInt("id"));
+
+            addPreference(a,Constants.KEY_USER_JSON,response);
+
+            return true;
+
+        } catch (JSONException e) {
+//            Toast.makeText(a,"JSON object problem"+e.getMessage(),Toast.LENGTH_LONG).show();
+            Log.i(a.toString(),"JSON object problem");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean checkConnectivity(){
