@@ -161,14 +161,14 @@ int testId;
             JSONArray tests=res.getJSONArray("tests");
             Vector<TestThumbnail> tt=hf.createTestThumbnailsFromJson(tests);
             Toast.makeText(this,tt.size()+"",Toast.LENGTH_LONG).show();
-            list=new ArrayList<>();
-            for(TestThumbnail tto:tt)
-            {
-                list.add(tto);
-                tla=new TestListAdapter(this,list);
-                ListView tlv=findViewById(R.id.test_list);
-                tlv.setAdapter(tla);
-            }
+//            list=new ArrayList<>();
+//            for(TestThumbnail tto:tt)
+//            {
+//                list.add(tto);
+//                tla=new TestListAdapter(this,list);
+//                ListView tlv=findViewById(R.id.test_list);
+//                tlv.setAdapter(tla);
+//            }
 
         } catch (JSONException e) {
             Toast.makeText(this,"json conversion problem dashboard"+e.getMessage(),Toast.LENGTH_LONG).show();
