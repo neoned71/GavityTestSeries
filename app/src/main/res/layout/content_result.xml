@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ResultActivity"
+    android:background="@drawable/background_gradient_no_radius"
+    tools:showIn="@layout/app_bar_result">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="300dp"
+        android:orientation="horizontal"
+        android:background="@drawable/background_gradient_white"
+
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:padding="20dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:weightSum="2">
+                <TextView
+                    android:textColor="@color/colorWhite"
+
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="RANK"/>
+                <TextView
+                    android:textColor="@color/colorTeal"
+
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="30dp"
+
+                    android:layout_height="wrap_content"
+                    android:text="4"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:weightSum="2">
+                <TextView
+                    android:textColor="@color/colorWhite"
+
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="MARKS"/>
+                <TextView
+                    android:textColor="@color/colorTeal"
+
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:text="4"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:weightSum="2">
+                <TextView
+                    android:textColor="@color/colorWhite"
+
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+
+                    android:text="TEST ID:"/>
+                <TextView
+                    android:textColor="@color/colorTeal"
+
+                    android:padding="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="15"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+
+
+            android:outlineAmbientShadowColor="@color/colorTeal"
+            android:layout_height="match_parent"></com.github.mikephil.charting.charts.PieChart>
+
+
+
+    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Questions with solutions"
+            android:textColor="@color/colorGreen"
+            android:textSize="30dp"
+            android:padding="30dp"
+            />
+        <ExpandableListView
+            android:dividerHeight="10dp"
+            android:childDivider="@color/colorAccent"
+
+            android:id="@+id/questions_exp_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ExpandableListView></LinearLayout>
+
+
+
+
+
+</LinearLayout>
