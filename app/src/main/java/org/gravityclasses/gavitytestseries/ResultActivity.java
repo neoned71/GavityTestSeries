@@ -1,5 +1,6 @@
 package org.gravityclasses.gavitytestseries;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -16,23 +17,48 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 public class ResultActivity extends AppCompatActivity {
 ArrayList<QuestionResult> arr;
 QuestionExpandableListViewAdapter qelv;
 ExpandableListView elv;
+int testId;
+    RequestQueue mRequestQueue;
+    HelpingFunctions hf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        testId=getIntent().getIntExtra("testId",0);
+        if(testId==0)
+        {
+            Intent i = new Intent(this,Dashboard.class);
+            startActivity(i);
+
+        }
         Toast.makeText(this,"result",Toast.LENGTH_LONG).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,21 +88,11 @@ ExpandableListView elv;
             }
         });
 
-
+        makeRequestTest(testId,Constants.user.studentId);
         elv=findViewById(R.id.questions_exp_list_view);
         arr=new ArrayList<>();
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
-        arr.add(new QuestionResult());
+
+
         qelv=new QuestionExpandableListViewAdapter(this,arr);
 
         elv.setAdapter(qelv);
@@ -91,6 +107,73 @@ ExpandableListView elv;
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+
+    public void makeRequestTest(final int testId,final int studentId){
+        // Instantiate the RequestQueue.
+        mRequestQueue = Volley.newRequestQueue(this);
+        String url =Constants.GET_TEST_URL;
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Log.i(TAG,response);
+                        handleTest(response);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ResultActivity.this,"network response failure:"+error.networkResponse.statusCode,Toast.LENGTH_LONG).show();
+
+            }
+
+        })
+        {
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("test_id",testId+"");
+                params.put("student_id",studentId+"");
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }};
+
+// Add the request to the RequestQueue.
+
+        mRequestQueue.add(stringRequest);
+    }
+
+    private void handleTest(String response) {
+        try {
+            JSONObject res=new JSONObject(response);
+            JSONArray tests=res.getJSONArray("tests");
+            Vector<TestThumbnail> tt=hf.createTestThumbnailsFromJson(tests);
+            Toast.makeText(this,tt.size()+"",Toast.LENGTH_LONG).show();
+            list=new ArrayList<>();
+            for(TestThumbnail tto:tt)
+            {
+                list.add(tto);
+                tla=new TestListAdapter(this,list);
+                ListView tlv=findViewById(R.id.test_list);
+                tlv.setAdapter(tla);
+            }
+
+        } catch (JSONException e) {
+            Toast.makeText(this,"json conversion problem dashboard"+e.getMessage(),Toast.LENGTH_LONG).show();
+            Log.i("testError",e.getMessage());
+            e.printStackTrace();
         }
     }
 

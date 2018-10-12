@@ -9,7 +9,7 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:background="@drawable/background_gradient_white"
-    tools:context=".TestPage">
+    tools:context=".TestActivity">
 
 
 

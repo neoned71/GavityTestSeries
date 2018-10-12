@@ -170,7 +170,7 @@ public class HelpingFunctions extends Application{
     }
 
 
-    public Vector<TestThumbnail> createTestThumbnailFromJson(JSONArray tests) throws JSONException {
+    public Vector<TestThumbnail> createTestThumbnailsFromJson(JSONArray tests) throws JSONException {
         TestThumbnail t=null;
         Vector<TestThumbnail> vTest=new Vector<>();
 
@@ -228,6 +228,7 @@ public class HelpingFunctions extends Application{
         int rank = testResult.getInt("rank");
 
         int testId = testResult.getInt("test_id");
+        int studentId = testResult.getInt("student_id");
         Vector<QResult> statuses=new Vector<>();
         JSONArray sArray=testResult.getJSONArray("result_json");
         for(int x =0; x < sArray.length();x++)
@@ -244,7 +245,7 @@ public class HelpingFunctions extends Application{
         marksObtained = testResult.getInt("marks_obtained");
         //String date=testResult.getString("date");
 
-        return new TestResult(statuses,testId,marksObtained,qAttempted,qNegative,qPositive,rank);
+        return new TestResult(statuses,studentId,testId,marksObtained,qAttempted,qNegative,qPositive,rank);
     }
 
     public TestPaper createTestPaperFromJson(JSONObject testPaper) throws JSONException {

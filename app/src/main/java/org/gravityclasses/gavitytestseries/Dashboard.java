@@ -14,8 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -38,7 +36,7 @@ import java.util.Map;
 import java.util.Vector;
 
 public class Dashboard extends AppCompatActivity {
-    String TAG="LoginActivit";
+    String TAG="LoginActivity";
     StringRequest stringRequest; // Assume this exists.
     RequestQueue mRequestQueue;
 
@@ -114,7 +112,7 @@ public class Dashboard extends AppCompatActivity {
         TestListAdapter.ViewHolder vh= (TestListAdapter.ViewHolder) v.getTag();
         if(vh.type==0)
         {
-            Intent i = new Intent(this,TestPage.class);
+            Intent i = new Intent(this,TestActivity.class);
             i.putExtra("testId",vh.testId);
             startActivity(i);
         }
@@ -125,7 +123,7 @@ public class Dashboard extends AppCompatActivity {
             startActivity(i);
 
         }
-        Toast.makeText(this,"yes",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"yes",Toast.LENGTH_LONG).show();
     }
 
 
@@ -182,7 +180,7 @@ public class Dashboard extends AppCompatActivity {
         try {
             JSONObject res=new JSONObject(response);
             JSONArray tests=res.getJSONArray("tests");
-            Vector<TestThumbnail> tt=hf.createTestThumbnailFromJson(tests);
+            Vector<TestThumbnail> tt=hf.createTestThumbnailsFromJson(tests);
             Toast.makeText(this,tt.size()+"",Toast.LENGTH_LONG).show();
             list=new ArrayList<>();
             for(TestThumbnail tto:tt)
