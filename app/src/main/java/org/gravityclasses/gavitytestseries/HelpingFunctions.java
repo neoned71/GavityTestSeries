@@ -162,12 +162,39 @@ public class HelpingFunctions extends Application{
                 t.setTestResult(createTestResultFromJson(testResult));
             }
         }
-
-
         return t;
-
-
     }
+//
+//    public Test createTestResultFromJson(JSONObject test) throws JSONException {
+//        Test t=null;
+//        JSONObject testPaper=test.getJSONObject("test_paper");
+//        JSONObject testStatus=test.getJSONObject("test_status");
+//        JSONObject testResult=test.getJSONObject("test_result");
+//        if(testPaper!=null)
+//        {
+//            TestPaper tp=createTestPaperFromJson(testPaper);
+//            int classId=test.getInt("classId");
+//            int id=test.getInt("id");
+//            String name=test.getString("name");
+//            int packageId=test.getInt("package_id");
+//            String date=test.getString("date");
+//            String durationMinutes=test.getString("duration_minutes");
+//            t=new Test(name,durationMinutes,id,test.getInt("is_enabled"),classId,packageId,tp);
+//            if(testStatus!=null)
+//            {
+//                t.setTestStatus(createTestStatusFromJson(testStatus));
+//            }
+//            if(testResult!=null)
+//            {
+//                t.setTestResult(createTestResultFromJson(testResult));
+//            }
+//        }
+//
+//
+//        return t;
+//
+//
+//    }
 
 
     public Vector<TestThumbnail> createTestThumbnailsFromJson(JSONArray tests) throws JSONException {

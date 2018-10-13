@@ -89,13 +89,7 @@ int testId;
         });
 
         makeRequestTest(testId,Constants.user.studentId);
-        elv=findViewById(R.id.questions_exp_list_view);
-        arr=new ArrayList<>();
 
-
-        qelv=new QuestionExpandableListViewAdapter(this,arr);
-
-        elv.setAdapter(qelv);
 
 
     }
@@ -151,30 +145,52 @@ int testId;
             }};
 
 // Add the request to the RequestQueue.
-
-        mRequestQueue.add(stringRequest);
+            mRequestQueue.add(stringRequest);
     }
 
     private void handleTest(String response) {
         try {
             JSONObject res=new JSONObject(response);
-            JSONArray tests=res.getJSONArray("tests");
-            Vector<TestThumbnail> tt=hf.createTestThumbnailsFromJson(tests);
-            Toast.makeText(this,tt.size()+"",Toast.LENGTH_LONG).show();
-//            list=new ArrayList<>();
-//            for(TestThumbnail tto:tt)
-//            {
-//                list.add(tto);
-//                tla=new TestListAdapter(this,list);
-//                ListView tlv=findViewById(R.id.test_list);
-//                tlv.setAdapter(tla);
-//            }
+            JSONObject test=res.getJSONObject("tests");
+            Test t=hf.createTestFromJson(test);
+            Vector<QResult> results=t.tr.result;
+            Vector<Question> questions = t.tp.questions;
 
+            ArrayList<QuestionResult> arr=new ArrayList<>();
+            if(results.size()!=questions.size())
+            {
+                setError("improper data from server");
+            }
+            else
+            {
+                for(int x = 0; x < results.size() ; x++)
+                {
+                    arr.add(new QuestionResult(results.get(x),questions.get(x)));
+                }
+            }
+            doInitializeListing(arr);
+            initializePieCharts();
         } catch (JSONException e) {
             Toast.makeText(this,"json conversion problem dashboard"+e.getMessage(),Toast.LENGTH_LONG).show();
             Log.i("testError",e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private void initializePieCharts() {
+    }
+
+    private void doInitializeListing(ArrayList t) {
+        elv=findViewById(R.id.questions_exp_list_view);
+        arr=t;
+        qelv=new QuestionExpandableListViewAdapter(this,arr);
+        elv.setAdapter(qelv);
+        }
+
+
+    public void setError(String s)
+    {
+        Toast.makeText(hf, s, Toast.LENGTH_SHORT).show();
     }
 
 

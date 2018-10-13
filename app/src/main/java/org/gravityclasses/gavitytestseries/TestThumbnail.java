@@ -3,7 +3,6 @@ package org.gravityclasses.gavitytestseries;
 public class TestThumbnail {
     String name,durationMinutes;
     int id,isEnabled=1,classId,packageId,tpId;
-    TestPaper tp;
     TestStatus ts=null;
     TestResult tr=null;
 
