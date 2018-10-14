@@ -146,7 +146,7 @@ public class HelpingFunctions extends Application{
         if(testPaper!=null)
         {
             TestPaper tp=createTestPaperFromJson(testPaper);
-            int classId=test.getInt("classId");
+            int classId=test.getInt("class_id");
             int id=test.getInt("id");
             String name=test.getString("name");
             int packageId=test.getInt("package_id");
@@ -293,7 +293,7 @@ public class HelpingFunctions extends Application{
     }
 
     public Solution createSolutionFromJson(JSONObject solution) throws JSONException {
-        Solution s= new Solution(solution.getString("text"),solution.getString("image"),solution.getString("link"));
+        Solution s= new Solution(solution.getString("text"),solution.has("image")?solution.getString("image"):null,solution.has("link")?solution.getString("link"):null);
         return s;
     }
 

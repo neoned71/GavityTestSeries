@@ -45,24 +45,28 @@ public class ResultActivity extends AppCompatActivity {
 ArrayList<QuestionResult> arr;
 QuestionExpandableListViewAdapter qelv;
 ExpandableListView elv;
+String TAG="ResultActivity";
 int testId;
+Test testResult;
     RequestQueue mRequestQueue;
     HelpingFunctions hf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        testId=getIntent().getIntExtra("testId",0);
-        if(testId==0)
-        {
-            Intent i = new Intent(this,Dashboard.class);
-            startActivity(i);
-
-        }
+        testId=7;
+        hf=(HelpingFunctions)getApplication();
+//        testId=getIntent().getIntExtra("testId",0);
+//        if(testId==0)
+//        {
+//            Intent i = new Intent(this,Dashboard.class);
+//            startActivity(i);
+//
+//        }
         Toast.makeText(this,"result",Toast.LENGTH_LONG).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        initializeCharts(2f,4f,3f);
+        //initializeCharts(2f,4f,3f);
         NavigationView nv=findViewById(R.id.nav_view);
         ImageView imageview = nv.findViewById(R.id.profile_pic);
         ColorMatrix matrix = new ColorMatrix();
@@ -88,8 +92,8 @@ int testId;
             }
         });
 
-        makeRequestTest(testId,Constants.user.studentId);
-
+//        makeRequestTest(testId,Constants.user.studentId);
+        makeRequestTest(testId,3);
 
 
     }
@@ -114,7 +118,7 @@ int testId;
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Log.i(TAG,response);
+                        Log.i(TAG,response);
                         handleTest(response);
 
                     }
@@ -151,11 +155,11 @@ int testId;
     private void handleTest(String response) {
         try {
             JSONObject res=new JSONObject(response);
-            JSONObject test=res.getJSONObject("tests");
-            Test t=hf.createTestFromJson(test);
-            Vector<QResult> results=t.tr.result;
-            Vector<Question> questions = t.tp.questions;
-
+            JSONObject test=res.getJSONObject("test");
+            testResult=hf.createTestFromJson(test);
+            Vector<QResult> results=testResult.tr.result;
+            Vector<Question> questions = testResult.tp.questions;
+            Log.i(TAG,"handleTest");
             ArrayList<QuestionResult> arr=new ArrayList<>();
             if(results.size()!=questions.size())
             {
@@ -169,7 +173,7 @@ int testId;
                 }
             }
             doInitializeListing(arr);
-            initializePieCharts();
+            initializeCharts(testResult.tr.qPositive,testResult.tr.qNegative,testResult.tr.qAttempted);
         } catch (JSONException e) {
             Toast.makeText(this,"json conversion problem dashboard"+e.getMessage(),Toast.LENGTH_LONG).show();
             Log.i("testError",e.getMessage());
@@ -177,8 +181,7 @@ int testId;
         }
     }
 
-    private void initializePieCharts() {
-    }
+
 
     private void doInitializeListing(ArrayList t) {
         elv=findViewById(R.id.questions_exp_list_view);
@@ -186,8 +189,6 @@ int testId;
         qelv=new QuestionExpandableListViewAdapter(this,arr);
         elv.setAdapter(qelv);
         }
-
-
     public void setError(String s)
     {
         Toast.makeText(hf, s, Toast.LENGTH_SHORT).show();
