@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/test_count"
+        android:id="@+id/count"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -33,7 +33,7 @@
         android:textColor="#055"
         android:text="Q1"/>
     <TextView
-
+        android:id="@+id/subject"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -45,7 +45,7 @@
         android:textColor="#666"
         android:text="CHEMISTRY"/>
     <TextView
-
+        android:id="@+id/time"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -57,7 +57,7 @@
         android:textColor="#055"
         android:text="250 sec"/>
     <TextView
-
+        android:id="@+id/marks"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"

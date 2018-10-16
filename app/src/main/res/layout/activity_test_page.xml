@@ -243,14 +243,13 @@
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent" />
 
-                <io.github.kexanie.library.MathView
+                <com.nishant.math.MathView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="When \\(a \\ne 0\\), there are two solutions to \\(ax^2 + bx + c = 0\\)
-        and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-                app:engine="MathJax">
 
-            </io.github.kexanie.library.MathView>
+                >
+
+            </com.nishant.math.MathView>
                <ImageView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -278,12 +277,11 @@
 
                         android:orientation="horizontal">
 
-                        <io.github.kexanie.library.MathView
+                        <com.nishant.math.MathView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-                            app:engine="MathJax">
-                        </io.github.kexanie.library.MathView>
+                            >
+                        </com.nishant.math.MathView>
 
 
                     </LinearLayout>
@@ -313,12 +311,11 @@
 
                         android:orientation="horizontal">
 
-                        <io.github.kexanie.library.MathView
+                        <com.nishant.math.MathView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-                            app:engine="MathJax">
-                        </io.github.kexanie.library.MathView>
+                            >
+                        </com.nishant.math.MathView>
 
 
                     </LinearLayout>
@@ -348,12 +345,11 @@
 
                         android:orientation="horizontal">
 
-                        <io.github.kexanie.library.MathView
+                        <com.nishant.math.MathView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-                            app:engine="MathJax">
-                        </io.github.kexanie.library.MathView>
+                            >
+                        </com.nishant.math.MathView>
 
 
                     </LinearLayout>
@@ -383,12 +379,12 @@
 
                         android:orientation="horizontal">
 
-                        <io.github.kexanie.library.MathView
+                        <com.nishant.math.MathView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-                            app:engine="MathJax">
-                        </io.github.kexanie.library.MathView>
+                            android:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
+                            >
+                        </com.nishant.math.MathView>
 
 
                     </LinearLayout>

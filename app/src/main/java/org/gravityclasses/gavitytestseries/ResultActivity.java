@@ -39,6 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Vector;
 
 public class ResultActivity extends AppCompatActivity {
@@ -55,6 +56,10 @@ Test testResult;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         testId=7;
+//        Random r = new Random();
+//        r.setSeed(20);
+//        r.nextInt();
+        //Toast.makeText(this,r.nextInt()+"",Toast.LENGTH_LONG).show();
         hf=(HelpingFunctions)getApplication();
 //        testId=getIntent().getIntExtra("testId",0);
 //        if(testId==0)
@@ -153,6 +158,7 @@ Test testResult;
     }
 
     private void handleTest(String response) {
+        Log.i("escapedResponse",response);
         try {
             JSONObject res=new JSONObject(response);
             JSONObject test=res.getJSONObject("test");
@@ -174,8 +180,8 @@ Test testResult;
             }
             doInitializeListing(arr);
             initializeCharts(testResult.tr.qPositive,testResult.tr.qNegative,testResult.tr.qAttempted);
-        } catch (JSONException e) {
-            Toast.makeText(this,"json conversion problem dashboard"+e.getMessage(),Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            //Toast.makeText(this,"json conversion problem dashboard"+e.getMessage(),Toast.LENGTH_LONG).show();
             Log.i("testError",e.getMessage());
             e.printStackTrace();
         }
@@ -183,7 +189,8 @@ Test testResult;
 
 
 
-    private void doInitializeListing(ArrayList t) {
+    private void doInitializeListing(ArrayList<QuestionResult> t) {
+        Log.i("xyz123","sad");
         elv=findViewById(R.id.questions_exp_list_view);
         arr=t;
         qelv=new QuestionExpandableListViewAdapter(this,arr);
@@ -207,8 +214,9 @@ Test testResult;
 
         ArrayList<Integer> colors=new ArrayList<>();
         colors.add(Color.argb(255,200,50,50));
-        colors.add(Color.GREEN);
         colors.add(Color.argb(255,0,100,100));
+        colors.add(Color.BLUE);
+
 
 
         dataSet1.setColors(colors);

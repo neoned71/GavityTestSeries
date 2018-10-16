@@ -15,7 +15,7 @@ app:cardBackgroundColor="@color/colorWhite"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/test_count"
+
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="left"
@@ -28,12 +28,13 @@ app:cardBackgroundColor="@color/colorWhite"
             android:textColor="#055"
             android:text="Question"/>
 
-        <io.github.kexanie.library.MathView
+        <WebView
+            android:id="@+id/qstns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-            app:engine="MathJax">
-        </io.github.kexanie.library.MathView>
+
+            >
+        </WebView>
 
 
         <TextView
@@ -50,12 +51,13 @@ app:cardBackgroundColor="@color/colorWhite"
             android:textColor="#055"
             android:text="Solution"/>
 
-        <io.github.kexanie.library.MathView
+        <com.nishant.math.MathView
+            android:id="@+id/sltns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-            app:engine="MathJax">
-        </io.github.kexanie.library.MathView>
+
+            >
+        </com.nishant.math.MathView>
 
     </LinearLayout>
 

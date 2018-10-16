@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 import java.util.Vector;
 
+
+
 public class HelpingFunctions extends Application{
     private Typeface normalFont;
     private Typeface boldFont;
@@ -27,6 +29,7 @@ public class HelpingFunctions extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+
 
     }
 
