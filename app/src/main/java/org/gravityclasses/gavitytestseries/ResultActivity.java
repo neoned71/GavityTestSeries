@@ -192,6 +192,16 @@ Test testResult;
     private void doInitializeListing(ArrayList<QuestionResult> t) {
         Log.i("xyz123","sad");
         elv=findViewById(R.id.questions_exp_list_view);
+        final int[] prevExpandPosition = {-1};
+        elv.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (prevExpandPosition[0] >= 0 && prevExpandPosition[0] != groupPosition) {
+                    elv.collapseGroup(prevExpandPosition[0]);
+                }
+                prevExpandPosition[0] = groupPosition;
+            }
+        });
         arr=t;
         qelv=new QuestionExpandableListViewAdapter(this,arr);
         elv.setAdapter(qelv);
@@ -216,17 +226,10 @@ Test testResult;
         colors.add(Color.argb(255,200,50,50));
         colors.add(Color.argb(255,0,100,100));
         colors.add(Color.BLUE);
-
-
-
         dataSet1.setColors(colors);
         dataSet1.setValueTextColor(Color.WHITE);
         dataSet1.setValueTextSize(10);
-
-
         PieData data = new PieData(dataSet1);
-
-
         PieChart pc=findViewById(R.id.pie_chart);
         pc.getDescription().setEnabled(false);
         pc.setData(data);
@@ -235,10 +238,6 @@ Test testResult;
         pc.setTransparentCircleRadius(30);
         pc.setDrawEntryLabels(false);
         pc.setCenterText("B+");
-
-
-//        PieDataSet pds=new PieDataSet(a,"Marks Distribution!");
-
     }
 
 

@@ -8,7 +8,7 @@
     android:paddingBottom="15dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:background="@drawable/background_gradient_white"
+    android:background="@drawable/background_gradient_no_radius"
     tools:context=".TestActivity">
 
 
@@ -25,12 +25,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2">
-            <ImageView
-                android:src="@drawable/g_logo_latest1"
-                android:layout_width="0dp"
+            <TextView
                 android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                />
+                android:layout_margin="5dp"
+
+                android:onClick="changeQuestion"
+                android:padding="20dp"
+                android:text="SUBMIT"
+                android:background="@drawable/background_gradient"
+                android:textAlignment="center"
+                android:textColor="#999"
+                android:textSize="20dp" />
+
 
 
             <ImageView
@@ -60,368 +68,31 @@
 
         </LinearLayout>
 
-        <HorizontalScrollView
-            android:id="@+id/hsv"
-            android:layout_marginTop="5dp"
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/questions_tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:onClick="changeQuestion"
-                    android:padding="20dp"
-                    android:text="12"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="13"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="14"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="15"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="12"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="22"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="42"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="36"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="12"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="12"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="12"
-                    android:textColor="#eee" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/background_circular"
-                    android:padding="20dp"
-                    android:text="12"
-                    android:textColor="#eee" />
-
-
-            </LinearLayout>
-
-
-        </HorizontalScrollView>
-        <ScrollView
+            android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/questions_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:scrollbars="none">
-
-            <LinearLayout
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_curved"
-            android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:text="Q1"
-                        android:textSize="30dp"
-                        android:textColor="#099"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:paddingTop="10dp"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:layout_height="match_parent"
-                        android:textColor="#900"
-                        android:text="CHEMISTRY"
-                        android:textStyle="bold"
-
-                        />
-                    <TextView
-                        android:paddingTop="10dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:layout_height="match_parent"
-                        android:text="+4  -1"
-                        android:textColor="@color/colorGray"/>
+            android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
 
 
-
-
-                </LinearLayout>
-                <TextView
-                    android:layout_height="1dp"
-                    android:background="#000"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent" />
-
-                <com.nishant.math.MathView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                >
-
-            </com.nishant.math.MathView>
-               <ImageView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/qst"/>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:weightSum="5"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:background="@color/colorTeal"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    app:cardCornerRadius="5dp"
-                    android:padding="10dp"
-
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@color/colorGreen"
-                    android:layout_height="wrap_content"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <com.nishant.math.MathView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            >
-                        </com.nishant.math.MathView>
-
-
-                    </LinearLayout>
-
-
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:weightSum="5"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:background="@color/colorTeal"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    app:cardCornerRadius="5dp"
-                    android:padding="10dp"
-
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@color/colorGray"
-                    android:layout_height="wrap_content"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <com.nishant.math.MathView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            >
-                        </com.nishant.math.MathView>
-
-
-                    </LinearLayout>
-
-
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:weightSum="5"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:background="@color/colorTeal"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    app:cardCornerRadius="5dp"
-                    android:padding="10dp"
-
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@color/colorGray"
-                    android:layout_height="wrap_content"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <com.nishant.math.MathView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            >
-                        </com.nishant.math.MathView>
-
-
-                    </LinearLayout>
-
-
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:weightSum="5"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:background="@color/colorTeal"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    app:cardCornerRadius="5dp"
-                    android:padding="10dp"
-
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@color/colorGray"
-                    android:layout_height="wrap_content"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal">
-
-                        <com.nishant.math.MathView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$"
-                            >
-                        </com.nishant.math.MathView>
-
-
-                    </LinearLayout>
-
-
-
-                </android.support.v7.widget.CardView>
-
-
-
-
-
-
-
-
-            </LinearLayout>
-        </ScrollView>
 
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-
-        android:onClick="changeQuestion"
-        android:padding="20dp"
-        android:text="SUBMIT"
-        android:layout_alignParentBottom="true"
+        android:src="@mipmap/ic_launcher"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/background_gradient"
-        android:textAlignment="center"
-        android:textColor="#999"
-        android:textSize="20dp" />
-
-
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
 
 
 </RelativeLayout>

@@ -1,12 +1,15 @@
 package org.gravityclasses.gavitytestseries;
 
 import android.content.Context;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 
@@ -93,18 +96,49 @@ public class QuestionExpandableListViewAdapter extends BaseExpandableListAdapter
 
     }
 
+
+    @Override
+    public void onGroupExpanded(int groupPosition) {
+        super.onGroupExpanded(groupPosition);
+
+    }
+
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         if (view == null) {
             view= lif.inflate(R.layout.layout_test_result_container,null);
         }
+        ExpandableListView elv=(ExpandableListView)viewGroup;
+//        Log.i("elv2","tag::"+i);
+//        for(int x =0; x<getGroupCount() ; x++)
+//        {
+//            if(x!=i)
+//            {
+//                elv.collapseGroup(x);
+//                Log.i("elv","closing"+x);
+//            }
+//        }
 
         Question q=arr.get(i).q;
 
         WebView tv1=view.findViewById(R.id.qstns);
         tv1.getSettings().setJavaScriptEnabled(true);
         tv1.getSettings().setAllowContentAccess(true);
-        tv1.loadUrl("file:///android_asset/www/math.html");
+        tv1.getSettings().setAllowFileAccess(true);
+        tv1.getSettings().setAllowFileAccessFromFileURLs(true);
+        tv1.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        String template="<script type=\"text/x-mathjax-config\">\n" +
+                "MathJax.Hub.Config({\n" +
+                "  tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]},\n" +
+                "  TeX: { equationNumbers: { autoNumber: \"AMS\" } }\n" +
+                "});\n" +
+                "</script>\n" +
+                "<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>\n" +
+                "<body>";
+        String res=template+q.question;
+        String encodedHtml = Base64.encodeToString(res.getBytes(), Base64.NO_PADDING);
+        tv1.loadData(encodedHtml, "text/html", "base64");
+//        tv1.loadUrl("file:///android_asset/www/math.html");
 
 //        tv1.config("MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$'],processEscapes: true}});");
 //        int first,last;
@@ -121,9 +155,16 @@ public class QuestionExpandableListViewAdapter extends BaseExpandableListAdapter
 //        tv1.setText("$\\mathop {Lim}\\limits_{x \\to \\infty } ({x^{ - 3}}\\sin 3x + a{x^{ - 2}} + b)$");
 //        .replace("$","$$")
 
-//        MathView tv2=view.findViewById(R.id.sltns);
-//        tv2.setText(q.solution.text);
-//        tv2.config("MathJax.Hub.Config({\n tex2jax: {\ninlineMath:[[\'$\',\'$\'],[\'\\\\(\',\'\\\\)\']],\nprocessEscapes: true\n}\n});");
+        WebView tv2=view.findViewById(R.id.qstns);
+        tv1.getSettings().setJavaScriptEnabled(true);
+        tv1.getSettings().setAllowContentAccess(true);
+        tv1.getSettings().setAllowFileAccess(true);
+        tv1.getSettings().setAllowFileAccessFromFileURLs(true);
+        tv1.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+
+        String res2=template+q.solution;
+        String encodedHtml2 = Base64.encodeToString(res2.getBytes(), Base64.NO_PADDING);
+        tv1.loadData(encodedHtml2, "text/html", "base64");
 
 
         return view;
