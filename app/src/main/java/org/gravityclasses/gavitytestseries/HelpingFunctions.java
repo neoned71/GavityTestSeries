@@ -68,20 +68,19 @@ public class HelpingFunctions extends Application{
         return spe.commit();
     }
 
-    public void checkLogin(Activity a)
+    public boolean checkLogin(Activity a)
     {
         String response=getPreference(a,Constants.KEY_USER_JSON);
         if(response.equals("") && Constants.user==null)
         {
-            Intent i=new Intent(a,LoginActivity.class);
-            startActivity(i);
-            a.finish();
+            return false;
         }
 
         if(!response.equals("") && Constants.user==null)
         {
-            login(a,response);
+            return login(a,response);
         }
+        return true;
     }
 
     public boolean logout(Activity a)
