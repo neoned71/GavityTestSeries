@@ -2,6 +2,7 @@ package org.gravityclasses.gavitytestseries;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,17 +14,21 @@ import java.util.ArrayList;
 
 public class QuestionPagerAdapter extends PagerAdapter {
     private Test test;
+    String TAG="QuestionPagerAdapter";
     private LayoutInflater inflater;
     private Context context;
+    int count=0;
 
     @Override
     public int getCount() {
-        return test.tp.questions.size();
+        Log.i(TAG,"Length "+test.tp.questions.size());
+        return count;
     }
     public QuestionPagerAdapter(Context c, Test t){
         context=c;
         inflater= LayoutInflater.from(c);
         test=t;
+        count=test.tp.questions.size();
         Log.i("SlideShowPagerAdapter",test.tp.questions.size()+"");
 
     }
@@ -38,12 +43,21 @@ public class QuestionPagerAdapter extends PagerAdapter {
 //        super.destroyItem(container, position, object);
     }
 
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        //return super.getPageTitle(position);
+        return "Q"+(position+1);
+    }
+
+
+
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-
-        View itemView = inflater.inflate(R.layout.layout_item_slideshow, null, false);
+        View itemView = inflater.inflate(R.layout.layout_test_question_pager, null);
         container.addView(itemView);
+        Log.i(TAG,"instantiate"+position);
         return itemView;
 
 

@@ -142,9 +142,29 @@ public class HelpingFunctions extends Application{
 
     public Test createTestFromJson(JSONObject test) throws JSONException {
         Test t=null;
+        JSONObject testStatus;
+        JSONObject testResult;
         JSONObject testPaper=test.getJSONObject("test_paper");
-        JSONObject testStatus=test.getJSONObject("test_status");
-        JSONObject testResult=test.getJSONObject("test_result");
+        if(!test.isNull("test_status"))
+        {
+             testStatus=test.getJSONObject("test_status");
+        }
+        else
+        {
+            testStatus=null;
+        }
+
+        if(!test.isNull("test_result"))
+        {
+            testResult=test.getJSONObject("test_result");
+        }
+        else
+        {
+            testResult=null;
+        }
+
+
+
         if(testPaper!=null)
         {
             TestPaper tp=createTestPaperFromJson(testPaper);

@@ -1,7 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:padding="10dp"
     android:layout_width="match_parent"
-     android:layout_height="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_curved"
     android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="3"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/qstn_number"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="Q1"
+        android:textSize="30dp"
+        android:textColor="#099"/>
+    <TextView
+        android:id="@+id/qstn_subject"
+        android:layout_width="0dp"
+        android:paddingTop="10dp"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:layout_height="match_parent"
+        android:textColor="#900"
+        android:text="CHEMISTRY"
+        android:textStyle="bold"
+
+        />
+    <TextView
+        android:id="@+id/qstn_marking_scheme"
+        android:paddingTop="10dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:layout_height="match_parent"
+        android:text="+4  -1"
+        android:textColor="@color/colorGray"/>
+
+
+
+
+</LinearLayout>
+<TextView
+    android:layout_height="1dp"
+    android:background="#000"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent" />
+    <!--<WebView-->
+        <!--android:id="@+id/qstn"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</WebView>-->
+
+    <ImageView
+        android:id="@+id/qstn_image"
+        android:maxHeight="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/qst" />
+
+
+<android.support.v7.widget.CardView
+    android:id="@+id/card_o_1"
+    android:layout_width="match_parent"
+    android:weightSum="5"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/colorTeal"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    android:padding="10dp"
+
+    app:cardElevation="2dp"
+    android:backgroundTint="@color/colorGreen"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <!--<WebView-->
+            <!--android:id="@+id/option_1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--&gt;-->
+        <!--</WebView>-->
+        <ImageView
+            android:id="@+id/option_1_i"
+            android:maxHeight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/g_logo_latest1">
+        </ImageView>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+    android:id="@+id/card_o_2"
+    android:layout_width="match_parent"
+    android:weightSum="5"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/colorTeal"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    android:padding="10dp"
+    app:cardElevation="2dp"
+    android:backgroundTint="@color/colorGray"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="horizontal">
+
+        <!--<WebView-->
+            <!--android:id="@+id/option_2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--&gt;-->
+        <!--</WebView>-->
+        <ImageView
+            android:id="@+id/option_2_i"
+            android:maxHeight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/g_logo_latest1"
+            >
+        </ImageView>
+
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+    android:id="@+id/card_o_3"
+    android:layout_width="match_parent"
+    android:weightSum="5"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/colorTeal"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    android:padding="10dp"
+
+    app:cardElevation="2dp"
+    android:backgroundTint="@color/colorGray"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="horizontal">
+
+        <!--<WebView-->
+            <!--android:id="@+id/option_3"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--&gt;-->
+        <!--</WebView>-->
+        <ImageView
+            android:id="@+id/option_3_i"
+            android:maxHeight="30dp"
+            android:src="@drawable/g_logo_latest1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+        </ImageView>
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+    android:id="@+id/card_o_4"
+    android:layout_width="match_parent"
+    android:weightSum="5"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/colorTeal"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    android:padding="10dp"
+    app:cardElevation="2dp"
+    android:backgroundTint="@color/colorGray"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="horizontal">
+
+        <!--<WebView-->
+            <!--android:id="@+id/option_4"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+        <!--</WebView>-->
+        <ImageView
+            android:id="@+id/option_4_i"
+            android:maxHeight="30dp"
+            android:src="@drawable/g_logo_latest1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+        </ImageView>
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
 </LinearLayout>
