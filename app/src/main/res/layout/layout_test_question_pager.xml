@@ -82,28 +82,21 @@
     android:padding="10dp"
 
     app:cardElevation="2dp"
-    android:backgroundTint="@color/colorGreen"
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
-        <!--<WebView-->
-            <!--android:id="@+id/option_1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
+        <WebView
+            android:id="@+id/option_1_t"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            <!--&gt;-->
-        <!--</WebView>-->
+            >
+        </WebView>
+
         <ImageView
             android:id="@+id/option_1_i"
-
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:src="@drawable/g_logo_latest1">
-        </ImageView>
-        <ImageView
-            android:id="@+id/option_1"
 
             android:layout_width="wrap_content"
             android:layout_height="70dp"
@@ -126,8 +119,8 @@
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp"
     android:padding="10dp"
-    app:cardElevation="2dp"
-    android:backgroundTint="@color/colorGray"
+    app:cardElevation="10dp"
+
     android:layout_height="wrap_content"
     >
     <LinearLayout
@@ -136,17 +129,17 @@
 
         android:orientation="horizontal">
 
-        <!--<WebView-->
-            <!--android:id="@+id/option_2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--&gt;-->
-        <!--</WebView>-->
+        <WebView
+            android:id="@+id/option_2_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </WebView>
         <ImageView
             android:id="@+id/option_2_i"
             android:maxHeight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:src="@drawable/g_logo_latest1"
             >
         </ImageView>
@@ -171,7 +164,7 @@
     android:padding="10dp"
 
     app:cardElevation="2dp"
-    android:backgroundTint="@color/colorGray"
+
     android:layout_height="wrap_content"
     >
     <LinearLayout
@@ -180,18 +173,18 @@
 
         android:orientation="horizontal">
 
-        <!--<WebView-->
-            <!--android:id="@+id/option_3"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--&gt;-->
-        <!--</WebView>-->
+        <WebView
+            android:id="@+id/option_3_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </WebView>
         <ImageView
             android:id="@+id/option_3_i"
-            android:maxHeight="30dp"
+
             android:src="@drawable/g_logo_latest1"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             >
         </ImageView>
 
@@ -207,13 +200,12 @@
     android:weightSum="5"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:background="@color/colorWhite"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp"
     android:padding="10dp"
     app:cardElevation="2dp"
-    android:backgroundTint="@color/colorGray"
+
     android:layout_height="wrap_content"
     >
     <LinearLayout
@@ -222,18 +214,17 @@
 
         android:orientation="horizontal">
 
-        <!--<WebView-->
-            <!--android:id="@+id/option_4"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-        <!--</WebView>-->
+        <WebView
+            android:id="@+id/option_4_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </WebView>
         <ImageView
             android:id="@+id/option_4_i"
-            android:maxHeight="30dp"
+
             android:src="@drawable/g_logo_latest1"
             android:layout_width="match_parent"
-            android:backgroundTint="@color/colorAccent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             >
         </ImageView>
 
