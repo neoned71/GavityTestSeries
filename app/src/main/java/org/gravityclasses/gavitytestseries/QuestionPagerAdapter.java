@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,9 @@ public class QuestionPagerAdapter extends PagerAdapter {
     String TAG="QuestionPagerAdapter";
     private LayoutInflater inflater;
     private Context context;
+    TestPaper tp;
+    TestStatus ts;
+
     int count=0;
 
     @Override
@@ -28,6 +32,8 @@ public class QuestionPagerAdapter extends PagerAdapter {
         context=c;
         inflater= LayoutInflater.from(c);
         test=t;
+        tp=test.tp;
+        ts=test.ts;
         count=test.tp.questions.size();
         Log.i("SlideShowPagerAdapter",test.tp.questions.size()+"");
 
@@ -56,11 +62,14 @@ public class QuestionPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View itemView = inflater.inflate(R.layout.layout_test_question_pager, null);
+        if(ts!=null)
+        {
+            CardView cv=itemView.findViewById(R.id.card_o_1);
+
+        }
         container.addView(itemView);
         Log.i(TAG,"instantiate"+position);
         return itemView;
-
-
     }
 
 
