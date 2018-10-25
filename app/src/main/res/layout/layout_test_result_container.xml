@@ -6,8 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     app:cardElevation="20dp"
-app:cardBackgroundColor="@color/colorWhite"
+app:cardBackgroundColor="@color/colorGray"
 
+    app:layout_goneMarginLeft="20dp"
     app:cardCornerRadius="0dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,14 +52,13 @@ app:cardBackgroundColor="@color/colorWhite"
             android:textColor="#055"
             android:text="Solution"/>
 
-        <com.nishant.math.MathView
+
+        <WebView
             android:id="@+id/sltns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             >
-        </com.nishant.math.MathView>
-
+        </WebView>
     </LinearLayout>
 
 

@@ -53,24 +53,18 @@ public class TestListAdapter extends BaseAdapter {
 
          */
         TextView tv1=view.findViewById(R.id.test_count);
-        tv1.setText(i);
+        tv1.setText(""+(i+1));
         TextView tv2=view.findViewById(R.id.test_name);
         tv2.setText(tt.name);
         int  type=0;
         if(tt.tr!=null){
             TextView tv3=view.findViewById(R.id.marks);
-            tv3.setText(tt.tr.marksObtained);
+            tv3.setText(tt.tr.marksObtained+"");
             TextView tv4=view.findViewById(R.id.rank);
-            tv4.setText(tt.tr.rank);
+            tv4.setText(tt.tr.rank+"");
             type=1;
         }
-
-        view.setTag(new ViewHolder(tt.id,type));
-
-
-
-
-
+        view.findViewById(R.id.proceed).setTag(new TestListAdapter.ViewHolder(tt.id,type));
         return view;
     }
 
@@ -82,7 +76,6 @@ public class TestListAdapter extends BaseAdapter {
         {
             this.type=type;
             this.testId=testId;
-
         }
     }
 }

@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Vector;
 
 public class Dashboard extends AppCompatActivity {
-    String TAG="LoginActivity";
+    String TAG="DashBoard";
     StringRequest stringRequest; // Assume this exists.
     RequestQueue mRequestQueue;
 
@@ -48,7 +48,6 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hf=(HelpingFunctions)getApplication();
-        hf.checkLogin(this);
 
         setContentView(R.layout.activity_dashboard);
 
@@ -66,9 +65,14 @@ public class Dashboard extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        if(hf.checkConnectivity())
+        if(hf.checkConnectivity() && hf.checkLogin(this))
         {
             makeRequestTests(Constants.user.classId,Constants.user.packageId,Constants.user.studentId);
+        }
+        else if(!hf.checkLogin(this))
+        {
+            Intent i = new Intent(this,LoginActivity.class);
+            startActivity(i);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -147,8 +151,8 @@ public class Dashboard extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Dashboard.this,"network response failure:"+error.networkResponse.statusCode,Toast.LENGTH_LONG).show();
 
+                Toast.makeText(Dashboard.this,"network response failure:"+error.networkResponse.statusCode,Toast.LENGTH_LONG).show();
             }
 
         })

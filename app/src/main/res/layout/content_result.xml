@@ -19,7 +19,7 @@
         android:padding="20dp"
         android:layout_height="300dp"
         android:orientation="horizontal"
-        android:background="@drawable/background_gradient_white"
+        android:background="@drawable/background_gradient_result"
 
         android:weightSum="2">
         <LinearLayout
@@ -46,12 +46,12 @@
                     android:layout_height="wrap_content"
                     android:text="RANK"/>
                 <TextView
-                    android:textColor="@color/colorTeal"
+                    android:textColor="@color/colorWhite"
 
                     android:padding="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:textSize="30dp"
+                    android:textSize="40dp"
 
                     android:layout_height="wrap_content"
                     android:text="4"/>
@@ -72,13 +72,13 @@
                     android:layout_height="wrap_content"
                     android:text="MARKS"/>
                 <TextView
-                    android:textColor="@color/colorTeal"
+                    android:textColor="@color/colorWhite"
 
                     android:padding="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textSize="30dp"
+                    android:textSize="40dp"
                     android:text="4"/>
             </LinearLayout>
 
@@ -98,12 +98,12 @@
 
                     android:text="TEST ID:"/>
                 <TextView
-                    android:textColor="@color/colorTeal"
+                    android:textColor="@color/colorWhite"
 
                     android:padding="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:textSize="30dp"
+                    android:textSize="40dp"
                     android:layout_height="wrap_content"
                     android:text="15"/>
             </LinearLayout>
@@ -119,23 +119,17 @@
             android:layout_width="0dp"
 
 
-            android:outlineAmbientShadowColor="@color/colorTeal"
+            android:outlineAmbientShadowColor="@color/colorWhite"
             android:layout_height="match_parent"></com.github.mikephil.charting.charts.PieChart>
 
 
 
     </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Questions with solutions"
-            android:textColor="@color/colorGreen"
-            android:textSize="30dp"
-            android:padding="30dp"
-            />
+
         <ExpandableListView
-            android:dividerHeight="10dp"
-            android:childDivider="@color/colorAccent"
+            android:layout_marginTop="10dp"
+            android:dividerHeight="2dp"
+            android:childDivider="@color/colorPrimaryDark"
 
             android:id="@+id/questions_exp_list_view"
             android:layout_width="match_parent"

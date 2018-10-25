@@ -15,6 +15,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,19 +57,19 @@ Test testResult;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        testId=7;
+//        testId=7;
 //        Random r = new Random();
 //        r.setSeed(20);
 //        r.nextInt();
         //Toast.makeText(this,r.nextInt()+"",Toast.LENGTH_LONG).show();
         hf=(HelpingFunctions)getApplication();
-//        testId=getIntent().getIntExtra("testId",0);
-//        if(testId==0)
-//        {
-//            Intent i = new Intent(this,Dashboard.class);
-//            startActivity(i);
-//
-//        }
+        testId=getIntent().getIntExtra("testId",0);
+        if(testId==0)
+        {
+            Intent i = new Intent(this,Dashboard.class);
+            startActivity(i);
+
+        }
         Toast.makeText(this,"result",Toast.LENGTH_LONG).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,7 +100,7 @@ Test testResult;
         });
 
 //        makeRequestTest(testId,Constants.user.studentId);
-        makeRequestTest(testId,3);
+        makeRequestTest(testId,Constants.user.studentId);
 
 
     }
@@ -154,6 +156,7 @@ Test testResult;
             }};
 
 // Add the request to the RequestQueue.
+        stringRequest.setShouldCache(false);
             mRequestQueue.add(stringRequest);
     }
 
@@ -205,7 +208,10 @@ Test testResult;
         arr=t;
         qelv=new QuestionExpandableListViewAdapter(this,arr);
         elv.setAdapter(qelv);
+
         }
+
+
     public void setError(String s)
     {
         Toast.makeText(hf, s, Toast.LENGTH_SHORT).show();
@@ -225,7 +231,7 @@ Test testResult;
         ArrayList<Integer> colors=new ArrayList<>();
         colors.add(Color.argb(255,200,50,50));
         colors.add(Color.argb(255,0,100,100));
-        colors.add(Color.BLUE);
+        colors.add(Color.DKGRAY);
         dataSet1.setColors(colors);
         dataSet1.setValueTextColor(Color.WHITE);
         dataSet1.setValueTextSize(10);

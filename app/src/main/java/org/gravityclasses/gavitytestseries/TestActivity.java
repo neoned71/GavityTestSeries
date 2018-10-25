@@ -46,7 +46,7 @@ public class TestActivity extends AppCompatActivity {
     HelpingFunctions hf;
     String TAG="TestActivity";
     QuestionPagerAdapter qpa;
-    ViewPager questionPager;
+    QuestionViewPager questionPager;
     Thread cachingThread,timeThread;
     boolean initialized=false;
 
@@ -103,7 +103,7 @@ public class TestActivity extends AppCompatActivity {
                 }
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
 
             }
         }
@@ -121,7 +121,7 @@ public class TestActivity extends AppCompatActivity {
                 }
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
     }
@@ -255,7 +255,7 @@ public class TestActivity extends AppCompatActivity {
         String status=getStatus();
         if(status!=null)
         {
-            makeRequestCache(testId,7,status,timeString);
+            makeRequestCache(testId,Constants.user.studentId,status,timeString);
         }
         else
         {

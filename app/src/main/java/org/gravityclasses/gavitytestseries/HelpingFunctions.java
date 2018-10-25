@@ -221,14 +221,31 @@ public class HelpingFunctions extends Application{
 
     public Vector<TestThumbnail> createTestThumbnailsFromJson(JSONArray tests) throws JSONException {
         TestThumbnail t=null;
+        JSONObject testStatus,testResult;
+
         Vector<TestThumbnail> vTest=new Vector<>();
 
        for(int x=0;x<tests.length();x++)
        {
            JSONObject test=tests.getJSONObject(x);
            int tpId=tests.getJSONObject(x).getInt("test_paper_id");
-           JSONObject testStatus=test.getJSONObject("test_status");
-           JSONObject testResult=test.getJSONObject("test_result");
+           if(!test.isNull("test_status"))
+           {
+               testStatus=test.getJSONObject("test_status");
+           }
+           else
+           {
+               testStatus=null;
+           }
+
+           if(!test.isNull("test_result"))
+           {
+               testResult=test.getJSONObject("test_result");
+           }
+           else
+           {
+               testResult=null;
+           }
            int classId=test.getInt("class_id");
            int id=test.getInt("id");
            String name=test.getString("name");
