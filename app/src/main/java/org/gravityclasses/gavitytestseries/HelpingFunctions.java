@@ -116,6 +116,15 @@ public class HelpingFunctions extends Application{
             e.printStackTrace();
             return false;
         }
+
+    }
+
+    public void abcdef(int a) throws Exception{
+        if(a==0)
+        {
+            throw new ArithmeticException();
+        }
+
     }
 
     public boolean checkConnectivity(){
