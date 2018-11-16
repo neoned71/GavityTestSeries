@@ -9,9 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
 
 public class QuestionPagerAdapter extends PagerAdapter {
     private Test test;
@@ -61,12 +58,97 @@ public class QuestionPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View itemView = inflater.inflate(R.layout.layout_test_question_pager, null);
-        if(ts!=null)
-        {
-            CardView cv=itemView.findViewById(R.id.card_o_1);
+        View itemView=null;
+        if(tp.questions.get(position).questionType==1){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+                CardView cv=itemView.findViewById(R.id.card_o_1);
 
+            }
         }
+        else if(tp.questions.get(position).questionType==2){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+                CardView cv=itemView.findViewById(R.id.card_o_1);
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==3){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+                CardView cv=itemView.findViewById(R.id.card_o_1);
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==4){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+                CardView cv=itemView.findViewById(R.id.card_o_1);
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==5){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+                CardView cv=itemView.findViewById(R.id.card_o_1);
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==6){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+                CardView cv=itemView.findViewById(R.id.card_o_1);
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==7){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==8){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==9){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==10){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+
+
+            }
+        }
+        else if(tp.questions.get(position).questionType==11){
+            itemView = inflater.inflate(R.layout.layout_test_question_pager_single, null);
+            if(ts!=null)
+            {
+
+
+            }
+        }
+
+
         container.addView(itemView);
         Log.i(TAG,"instantiate"+position);
         return itemView;

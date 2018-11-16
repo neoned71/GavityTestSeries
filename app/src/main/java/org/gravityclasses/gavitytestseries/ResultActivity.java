@@ -108,11 +108,19 @@ Test testResult;
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+                                                                                                                                                                                                        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void logout(View v)
+    {
+        ((HelpingFunctions)getApplication()).logout(this);
+        Intent i = new Intent(this,LoginActivity.class);
+        startActivity(i);
+        this.finish();
     }
 
 

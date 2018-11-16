@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     app:cardElevation="20dp"
-app:cardBackgroundColor="@color/colorGray"
+app:cardBackgroundColor="@color/colorPrimaryDark"
 
     app:layout_goneMarginLeft="20dp"
     app:cardCornerRadius="0dp">

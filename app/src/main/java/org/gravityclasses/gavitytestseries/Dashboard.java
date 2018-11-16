@@ -67,6 +67,7 @@ public class Dashboard extends AppCompatActivity {
 
         if(hf.checkConnectivity() && hf.checkLogin(this))
         {
+            Toast.makeText(this,"making connection",Toast.LENGTH_LONG).show();
             makeRequestTests(Constants.user.classId,Constants.user.packageId,Constants.user.studentId);
         }
         else if(!hf.checkLogin(this))
@@ -96,6 +97,8 @@ public class Dashboard extends AppCompatActivity {
     public void logout(View v)
     {
         ((HelpingFunctions)getApplication()).logout(this);
+        Intent i = new Intent(this,LoginActivity.class);
+        startActivity(i);
         this.finish();
     }
 

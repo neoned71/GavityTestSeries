@@ -11,6 +11,8 @@ import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
@@ -49,6 +51,9 @@ public class TestActivity extends AppCompatActivity {
     QuestionViewPager questionPager;
     Thread cachingThread,timeThread;
     boolean initialized=false;
+    RecyclerView rv;
+    QuestionsTestHorizontalListAdapter qthla;
+
 
 
 
@@ -534,7 +539,31 @@ public class TestActivity extends AppCompatActivity {
 
     private void doInitializePaper() {
         questionPager = findViewById(R.id.questions_pager);
+        rv=findViewById(R.id.horizontal_questions_list);
+        qthla=new QuestionsTestHorizontalListAdapter(test.ts.status);
+        rv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        rv.setAdapter(qthla);
         qpa=new QuestionPagerAdapter(this,test);
+        questionPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+//                Log.i(TAG,"onPageScrolled");
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+//                Log.i(TAG,"onPageScrolled2");
+                qthla.setCurrent(i);
+                qthla.notifyDataSetChanged();
+                rv.getLayoutManager().scrollToPosition(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+//                Log.i(TAG,"onPageScrolled3");
+
+            }
+        });
         questionPager.setAdapter(qpa);
         questionPager.setOffscreenPageLimit(1);
         Log.i(TAG,"doinitialize");
@@ -567,6 +596,14 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void setError(String str) {
+    }
+
+    public void openQuestion(View v)
+    {
+        int i=(int)v.getTag();
+        questionPager.setCurrentItem(i,true);
+        qthla.setCurrent(i);
+        qthla.notifyDataSetChanged();
     }
 
 

@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -110,19 +111,12 @@ public class HelpingFunctions extends Application{
 
             return true;
 
-        } catch (JSONException e) {
+        }
+        catch (JSONException e) {
 //            Toast.makeText(a,"JSON object problem"+e.getMessage(),Toast.LENGTH_LONG).show();
             Log.i(a.toString(),"JSON object problem");
             e.printStackTrace();
             return false;
-        }
-
-    }
-
-    public void abcdef(int a) throws Exception{
-        if(a==0)
-        {
-            throw new ArithmeticException();
         }
 
     }
@@ -277,6 +271,8 @@ public class HelpingFunctions extends Application{
 
         return vTest;
        }
+
+
     public TestStatus createTestStatusFromJson(JSONObject testStatus) throws JSONException {
         int studentId = testStatus.getInt("student_id");
         int testId = testStatus.getInt("test_id");
@@ -287,12 +283,22 @@ public class HelpingFunctions extends Application{
             int choice=sArray.getJSONObject(x).getInt("choice");
             int time=sArray.getJSONObject(x).getInt("time");
             int visited=sArray.getJSONObject(x).getInt("visited");
+            int attempted=sArray.getJSONObject(x).getInt("attempted");
 
-            statuses.add(new QStatus(choice,time,visited));
+            statuses.add(new QStatus(choice,time,visited,attempted));
         }
         String lrt=testStatus.getString("lrt");
 
         return new TestStatus(statuses,studentId,testId,lrt);
+    }
+
+    public Comprehension createComprehensionFromJson(JSONObject comprehension) throws JSONException {
+        String subject = comprehension.getString("subject");
+        String name = comprehension.getString("name");
+        JSONObject content= comprehension.getJSONObject("content");
+        String image=content.getString("image");
+        String text=content.getString("text");
+        return new Comprehension(name,subject,text,image);
     }
 
     public TestResult createTestResultFromJson(JSONObject testResult) throws JSONException {
@@ -330,7 +336,7 @@ public class HelpingFunctions extends Application{
         for(int i=0;i<qArray.length();i++)
         {
             JSONObject question=qArray.getJSONObject(i);
-            questions.add(createQuestionSingleFromJson(question));
+            questions.add(createQuestionFromJson(question));
         }
 
         String date=testPaper.getString("date");
@@ -345,26 +351,152 @@ public class HelpingFunctions extends Application{
         return s;
     }
 
-    public Question createQuestionSingleFromJson(JSONObject question) throws JSONException {
+    public Question createQuestionFromJson(JSONObject question) throws JSONException {
         JSONObject option=null;
         Vector<QOption> vOptions=new Vector<>();
 
-            JSONArray options=question.getJSONArray("options");
+        JSONArray options=null;
+        Solution s=createSolutionFromJson(question.getJSONObject("solution"));
+        int type=question.getInt("question_type");
+        Question qo=null;
+
+        if(type==1)
+        {
+            options=question.getJSONArray("options");
             for(int i=0;i<options.length();i++)
             {
                 option=options.getJSONObject(i);
                 vOptions.add(createOptionFromJson(option));
             }
-            Solution s=createSolutionFromJson(question.getJSONObject("solution"));
-
-//        String question, String subject, String topic, String difficulty, String marking, int correctAns, Vector options,Solution s
-            Question qo=new Question(question.getInt("id"),question.getString("question"),question.getString("subject"),
+            qo=new SingleQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
                     question.getString("topic"),
                     question.getString("difficulty"),
                     question.getString("marking"),
-                    question.getInt("correct_ans"),vOptions,s);
-            return qo;
+                    question.getString("correct_ans"),vOptions,s);
+        }
+        else if(type==2)
+        {
+            options=question.getJSONArray("options");
+            for(int i=0;i<options.length();i++)
+            {
+                option=options.getJSONObject(i);
+                vOptions.add(createOptionFromJson(option));
+            }
 
+            qo=new MultipleQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),vOptions,s);
+        }
+        else if(type==3)
+        {
+            options=question.getJSONArray("options");
+            for(int i=0;i<options.length();i++)
+            {
+                option=options.getJSONObject(i);
+                vOptions.add(createOptionFromJson(option));
+            }
+            Comprehension comprehension=createComprehensionFromJson(question.getJSONObject("comprehension"));
+            //insert comprehension data
+            qo=new ComprehensionQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),vOptions,s,comprehension);
+        }
+        else if(type == 4)
+        {
+
+            Iterator<String> keys = question.keys();
+            Vector<QuestionItem> vqi=new Vector<>();
+            JSONObject temp;
+            while(keys.hasNext()) {
+                String key = keys.next();
+                temp=question.getJSONObject(key);
+                vqi.add(new QuestionItem(temp.getString("label"),temp.getString("type"),temp.getString("value")));
+            }
+            qo=new MatrixTwoQuestion(question.getInt("id"),vqi,question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        else if(type==5)
+        {
+            qo=new TrueFalseQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        else if(type==6)
+        {
+            qo=new IntegerQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        else if(type==7)
+        {
+            qo=new FillUpsQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+
+        else if(type==8)
+        {
+            QuestionItem a,r;
+            JSONObject assertion=question.getJSONObject("assertion");
+            JSONObject reason=question.getJSONObject("assertion");
+
+            a=new QuestionItem(assertion.getString("label"),assertion.getString("type"),assertion.getString("value"));
+            r=new QuestionItem(reason.getString("label"),reason.getString("type"),reason.getString("value"));
+
+
+
+            qo=new AssertionReasonQuestion(question.getInt("id"),a,r,question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        else if(type==9)
+        {
+            qo=new FillUpsQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        else if(type==10)
+        {
+            Iterator<String> keys = question.keys();
+            Vector<QuestionItem> vqi=new Vector<>();
+            JSONObject temp;
+            while(keys.hasNext()) {
+                String key = keys.next();
+                temp=question.getJSONObject(key);
+                vqi.add(new QuestionItem(temp.getString("label"),temp.getString("type"),temp.getString("value")));
+            }
+            qo=new MatrixThreeQuestion(question.getInt("id"),vqi,question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        else if(type==11)
+        {
+            qo=new DecimalQuestion(question.getInt("id"),question.getString("question"),question.getString("image"),question.getString("subject"),
+                    question.getString("topic"),
+                    question.getString("difficulty"),
+                    question.getString("marking"),
+                    question.getString("correct_ans"),s);
+        }
+        return qo;
     }
 
     public QOption createOptionFromJson(JSONObject option) throws JSONException {

@@ -360,6 +360,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(hf.login(LoginActivity.this,response)){
                             Intent i = new Intent(LoginActivity.this,Dashboard.class);
                             startActivity(i);
+                            finish();
                         }
 //                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
 //                        Intent i =new Intent(LoginActivity.this,Dashboard.class);
