@@ -17,7 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
@@ -89,7 +93,7 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_page);
         PagerTabStrip pager_header=findViewById(R.id.pager_header);
         pager_header.setTextSize(TypedValue.COMPLEX_UNIT_DIP,20);
-        pager_header.setTextColor(Color.WHITE);
+        pager_header.setTextColor(Color.BLACK);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
@@ -162,9 +166,7 @@ public class TestActivity extends AppCompatActivity {
 
 
 
-    private void submitPaper(){
 
-    }
 
 
 
@@ -433,6 +435,19 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
+    public void submit(View v)
+    {
+        submitPaper();
+    }
+
+    private void submitPaper(){
+        String status=getStatus();
+        int studentId=Constants.user.studentId;
+        int testId=this.testId;
+
+        makeRequestSubmit(testId,studentId,status);
+    }
+
     public void makeRequestSubmit(final int testId,final int studentId,final String testStatus){
         // Instantiate the RequestQueue.
         mRequestQueue = Volley.newRequestQueue(this);
@@ -485,9 +500,14 @@ public class TestActivity extends AppCompatActivity {
             {
                 Log.i(TAG,"result submit successful");
                 setError("submit successful");
+                Intent i = new Intent(this,ResultActivity.class);
+                i.putExtra("testId",testId);
+                startActivity(i);
+                finish();
             }else
             {
                 setError("some error has occurred in submitting the result");
+                Toast.makeText(this,res.getString("message"),Toast.LENGTH_LONG).show();
                 Log.i(TAG,"test get failed");
             }
 
@@ -554,6 +574,7 @@ public class TestActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
 //                Log.i(TAG,"onPageScrolled2");
                 qthla.setCurrent(i);
+                test.ts.status.get(i).visited=1;
                 qthla.notifyDataSetChanged();
                 rv.getLayoutManager().scrollToPosition(i);
             }
@@ -565,7 +586,7 @@ public class TestActivity extends AppCompatActivity {
             }
         });
         questionPager.setAdapter(qpa);
-        questionPager.setOffscreenPageLimit(1);
+        questionPager.setOffscreenPageLimit(0);
         Log.i(TAG,"doinitialize");
 
 
@@ -575,6 +596,226 @@ public class TestActivity extends AppCompatActivity {
         //stopTimer();
         //stopCaching();
         initialized=true;
+
+    }
+
+//    public void selectSingleAns(View v)
+//    {
+//        QuestionPagerAdapter.Holder h= (QuestionPagerAdapter.Holder) v.getTag();
+//        int q=h.question;
+//        int o=h.option;
+//        o=o+1;
+//        Log.i(TAG,o+" "+q);
+//        NewCardView ncv=(NewCardView)v;
+//        v=ncv;
+//
+//        LinearLayout parent=(LinearLayout)ncv.getParent();
+//        v=parent;
+//
+//
+//
+////        LinearLayout b=ncv.findViewById(R.id.nmb);
+////        View fd=b;
+//
+//
+//
+//        if(status==null)
+//        {
+//            status=ts.status;
+//        }
+//        if(status.get(q).attempted==1)
+//        {
+//            Log.i(TAG,"removing mark");
+//            if(Integer.parseInt(status.get(q).choice)==(o))
+//            {
+//                status.get(q).attempted=0;
+//                status.get(q).choice="0";
+//                if(o==1)
+//                {
+//                    v.findViewById(R.id.selected_1).setBackgroundColor(Color.WHITE);
+//                }
+//                else if(o==2)
+//                {
+//                    v.findViewById(R.id.selected_2).setBackgroundColor(Color.WHITE);
+//                }
+//                else if(o==3)
+//                {
+//                    v.findViewById(R.id.selected_3).setBackgroundColor(Color.WHITE);
+//                }
+//                else if(o==4)
+//                {
+//                    v.findViewById(R.id.selected_4).setBackgroundColor(Color.WHITE);
+//                }
+//            }
+//            else
+//            {
+//                Log.i(TAG,"attempted2");
+//                status.get(q).choice=o+"";
+//                View c=v.findViewById(R.id.selected_1);
+//                c.setBackgroundColor(Color.WHITE);
+//                v.findViewById(R.id.selected_2).setBackgroundColor(Color.WHITE);
+//                v.findViewById(R.id.selected_3).setBackgroundColor(Color.WHITE);
+//                v.findViewById(R.id.selected_4).setBackgroundColor(Color.WHITE);
+//                if(o==1)
+//                {
+//                    v.findViewById(R.id.selected_1).setBackgroundColor(Color.argb(255,0,100,100));
+//                }
+//                else if(o==2)
+//                {
+//                    v.findViewById(R.id.selected_2).setBackgroundColor(Color.argb(255,0,100,100));
+//                }
+//                else if(o==3)
+//                {
+//                    v.findViewById(R.id.selected_3).setBackgroundColor(Color.argb(255,0,100,100));
+//                }
+//                else if(o==4)
+//
+//                {
+//                    v.findViewById(R.id.selected_4).setBackgroundColor(Color.argb(255,0,100,100));
+//                }
+//
+//            }
+//
+//
+//        }
+//        else
+//        {
+//            Log.i(TAG,"was not attempted");
+//            status.get(q).attempted=1;
+//            status.get(q).choice=o+"";
+//            View c;
+//            if(o==1)
+//            {
+//               c= v.findViewById(R.id.selected_1);
+//               c.setBackgroundColor(Color.argb(255,0,100,100));
+//            }
+//            else if(o==2)
+//            {
+//                c= v.findViewById(R.id.selected_2);
+//                c.setBackgroundColor(Color.argb(255,0,100,100));
+//            }
+//            else if(o==3)
+//            {
+//                c= v.findViewById(R.id.selected_3);
+//                c.setBackgroundColor(Color.argb(255,0,100,100));
+//            }
+//            else if(o==4)
+//            {
+//                c= v.findViewById(R.id.selected_4);
+//                c.setBackgroundColor(Color.argb(255,0,100,100));
+//            }
+//        }
+//
+//
+//    }
+
+    public void selectSingleAns(View v)
+    {
+        QuestionPagerAdapter.Holder h= (QuestionPagerAdapter.Holder) v.getTag();
+        int q=h.question;
+        int o=h.option;
+        o=o+1;
+        Log.i(TAG,o+" "+q);
+        NewCardView ncv=(NewCardView)v;
+        v=ncv;
+
+        LinearLayout parent=(LinearLayout)ncv.getParent();
+        v=parent;
+
+
+
+//        LinearLayout b=ncv.findViewById(R.id.nmb);
+//        View fd=b;
+
+
+
+        if(status==null)
+        {
+            status=ts.status;
+        }
+        if(status.get(q).attempted==1)
+        {
+            Log.i(TAG,"removing mark");
+            if(Integer.parseInt(status.get(q).choice)==(o))
+            {
+                status.get(q).attempted=0;
+                status.get(q).choice="0";
+                if(o==1)
+                {
+                    v.findViewById(R.id.selected_1).setVisibility(View.INVISIBLE);
+                }
+                else if(o==2)
+                {
+                    v.findViewById(R.id.selected_2).setVisibility(View.INVISIBLE);
+                }
+                else if(o==3)
+                {
+                    v.findViewById(R.id.selected_3).setVisibility(View.INVISIBLE);
+                }
+                else if(o==4)
+                {
+                    v.findViewById(R.id.selected_4).setVisibility(View.INVISIBLE);
+                }
+            }
+            else
+            {
+                Log.i(TAG,"attempted2");
+                status.get(q).choice=o+"";
+
+                v.findViewById(R.id.selected_1).setVisibility(View.INVISIBLE);
+                v.findViewById(R.id.selected_2).setVisibility(View.INVISIBLE);
+                v.findViewById(R.id.selected_3).setVisibility(View.INVISIBLE);
+                v.findViewById(R.id.selected_4).setVisibility(View.INVISIBLE);
+                if(o==1)
+                {
+                    v.findViewById(R.id.selected_1).setVisibility(View.VISIBLE);
+                }
+                else if(o==2)
+                {
+                    v.findViewById(R.id.selected_2).setVisibility(View.VISIBLE);
+                }
+                else if(o==3)
+                {
+                    v.findViewById(R.id.selected_3).setVisibility(View.VISIBLE);
+                }
+                else if(o==4)
+
+                {
+                    v.findViewById(R.id.selected_4).setVisibility(View.VISIBLE);
+                }
+
+            }
+
+
+        }
+        else
+        {
+            Log.i(TAG,"was not attempted");
+            status.get(q).attempted=1;
+            status.get(q).choice=o+"";
+            View c;
+            if(o==1)
+            {
+                c= v.findViewById(R.id.selected_1);
+                c.setVisibility(View.VISIBLE);
+            }
+            else if(o==2)
+            {
+                c= v.findViewById(R.id.selected_2);
+                c.setVisibility(View.VISIBLE);
+            }
+            else if(o==3)
+            {
+                c= v.findViewById(R.id.selected_3);
+                c.setVisibility(View.VISIBLE);
+            }
+            else if(o==4)
+            {
+                c= v.findViewById(R.id.selected_4);
+                c.setVisibility(View.VISIBLE);
+            }
+        }
+
 
     }
 
@@ -590,6 +831,8 @@ public class TestActivity extends AppCompatActivity {
         this.ts=new TestStatus(qs,studentId,testId,"");
 
         this.test.ts=this.ts;
+        status=ts.status;
+        Log.i(TAG,""+ts.status.size());
 
 
 

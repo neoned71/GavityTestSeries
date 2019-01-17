@@ -6,7 +6,7 @@
     android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/background_curved"
     android:orientation="vertical">
 
     <LinearLayout
@@ -63,101 +63,152 @@
         android:maxHeight="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/qst" />
+         />
 
 
-<android.support.v7.widget.CardView
+<org.gravityclasses.gavitytestseries.NewCardView
     android:id="@+id/card_o_1"
     android:layout_width="match_parent"
     android:weightSum="5"
+    android:onClick="selectSingleAns"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:background="@color/colorWhite"
+
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+    android:background="@color/colorGray"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="5dp"
-    android:padding="10dp"
-
-    app:cardElevation="2dp"
+    app:cardCornerRadius="10dp"
+    android:layout_gravity="center"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    app:cardElevation="1dp"
+    android:minHeight="50dp"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/nmb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:weightSum="4.4"
         android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:text="(A)"/>
         <WebView
             android:id="@+id/option_1_t"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_weight="3.8"
             android:layout_height="wrap_content">
         </WebView>
 
         <ImageView
+            android:cropToPadding="true"
             android:id="@+id/option_1_i"
-
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:src="@drawable/g_logo_latest1">
+            android:layout_width="0dp"
+            android:layout_weight="3.8"
+            android:layout_height="110dp"
+            android:visibility="gone"
+            >
         </ImageView>
+        <ImageView
+            android:id="@+id/selected_1"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:src="@drawable/tick"
+            android:layout_height="50dp"
+            />
     </LinearLayout>
 
 
 
-</android.support.v7.widget.CardView>
+</org.gravityclasses.gavitytestseries.NewCardView>
 
-<android.support.v7.widget.CardView
+<org.gravityclasses.gavitytestseries.NewCardView
     android:id="@+id/card_o_2"
     android:layout_width="match_parent"
     android:weightSum="5"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:background="@color/colorWhite"
+    android:onClick="selectSingleAns"
+    android:background="@color/colorGray"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp"
     android:padding="10dp"
-    app:cardElevation="10dp"
-
+    app:cardElevation="2dp"
+    android:minHeight="50dp"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
     android:layout_height="wrap_content"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:gravity="center"
+        android:weightSum="4.4"
         android:orientation="horizontal">
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:text="(B)"/>
         <WebView
             android:id="@+id/option_2_t"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_weight="3.8"
+            android:layout_height="wrap_content">
         </WebView>
+
         <ImageView
+            android:cropToPadding="true"
             android:id="@+id/option_2_i"
-            android:maxHeight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:src="@drawable/g_logo_latest1"
+            android:layout_width="0dp"
+            android:layout_weight="3.8"
+            android:layout_height="110dp"
+            android:visibility="gone"
             >
         </ImageView>
-
-
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/selected_2"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:src="@drawable/tick"
+            android:layout_height="50dp"
+            />
     </LinearLayout>
 
 
 
-</android.support.v7.widget.CardView>
+</org.gravityclasses.gavitytestseries.NewCardView>
 
-<android.support.v7.widget.CardView
+<org.gravityclasses.gavitytestseries.NewCardView
     android:id="@+id/card_o_3"
     android:layout_width="match_parent"
     android:weightSum="5"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:background="@color/colorWhite"
+    android:onClick="selectSingleAns"
+    android:background="@color/colorGray"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp"
+    android:minHeight="50dp"
     android:padding="10dp"
-
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
     app:cardElevation="2dp"
 
     android:layout_height="wrap_content"
@@ -165,67 +216,111 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:gravity="center"
+        android:weightSum="4.4"
         android:orientation="horizontal">
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:text="(C)"/>
         <WebView
             android:id="@+id/option_3_t"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_weight="3.8"
+            android:layout_height="wrap_content">
         </WebView>
-        <ImageView
-            android:id="@+id/option_3_i"
 
-            android:src="@drawable/g_logo_latest1"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/option_3_i"
+            android:layout_width="0dp"
+            android:layout_weight="3.8"
+            android:layout_height="110dp"
+            android:visibility="gone"
             >
         </ImageView>
-
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/selected_3"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:src="@drawable/tick"
+            android:layout_height="50dp"
+            />
     </LinearLayout>
 
 
 
-</android.support.v7.widget.CardView>
+</org.gravityclasses.gavitytestseries.NewCardView>
 
-<android.support.v7.widget.CardView
+<org.gravityclasses.gavitytestseries.NewCardView
     android:id="@+id/card_o_4"
     android:layout_width="match_parent"
     android:weightSum="5"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
+
+    android:onClick="selectSingleAns"
+    android:background="@color/colorGray"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="5dp"
     android:padding="10dp"
     app:cardElevation="2dp"
-
     android:layout_height="wrap_content"
-    >
+    android:minHeight="50dp"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:gravity="center"
+        android:weightSum="4.4"
         android:orientation="horizontal">
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:text="(D)"/>
         <WebView
             android:id="@+id/option_4_t"
-            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_weight="3.8"
             android:layout_height="wrap_content">
         </WebView>
-        <ImageView
-            android:id="@+id/option_4_i"
 
-            android:src="@drawable/g_logo_latest1"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/option_4_i"
+            android:layout_width="0dp"
+            android:layout_weight="3.8"
+            android:layout_height="110dp"
+            android:visibility="gone"
             >
         </ImageView>
-
-
+        <ImageView
+            android:cropToPadding="true"
+            android:id="@+id/selected_4"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:src="@drawable/tick"
+            android:layout_height="50dp"
+            />
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</org.gravityclasses.gavitytestseries.NewCardView>
 
 
 

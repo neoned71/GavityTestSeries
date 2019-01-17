@@ -280,7 +280,7 @@ public class HelpingFunctions extends Application{
         JSONArray sArray=testStatus.getJSONArray("test_status");
         for(int x =0; x < sArray.length();x++)
         {
-            int choice=sArray.getJSONObject(x).getInt("choice");
+            String choice=sArray.getJSONObject(x).getString("choice");
             int time=sArray.getJSONObject(x).getInt("time");
             int visited=sArray.getJSONObject(x).getInt("visited");
             int attempted=sArray.getJSONObject(x).getInt("attempted");

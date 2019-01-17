@@ -12,6 +12,7 @@ public class Constants {
     final static String GET_PACKAGE="https://gravityclasses.in/test_series/scripts/get_package.php";
     final static String GET_RANK="https://gravityclasses.in/test_series/scripts/get_rank.php";
     final static String GET_TEST_RANK="https://gravityclasses.in/test_series/scripts/get_test_rank.php";
+    final static String QUESTION_IMAGE_DIRECTORY="https://gravityclasses.in/test_series/question_images/";
     final static String KEY_USER_JSON="userJson";
     static User user=null;
 

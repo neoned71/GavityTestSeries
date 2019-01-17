@@ -46,7 +46,7 @@ public class QuestionsTestHorizontalListAdapter extends RecyclerView.Adapter<Que
         if(current==i){
             title.setBackgroundResource(R.drawable.background_circular_white);
         }
-        else if(vqs.get(i).visited==1)
+        else if(vqs.get(i).visited==1 && vqs.get(i).attempted!=1)
         {
             title.setBackgroundResource(R.drawable.background_circular_red);
         }
